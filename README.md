@@ -1,44 +1,44 @@
 # Kennel_environment_monitor
 State of art kennel environment monitor with online platform monitor panel
 
-基本工作原理讲解与SIM800C 模块使用指导：
-【接口说明】： 
-               Arduino Mega 2560与GSM-SIM800C连线采用UART串口通信，与单片机串口3通信接线如下：
-		      Arduino Mega 2560单片机      SIM800C 
-			        RX3                  TXD
-			        TX3                  RXD 
-               通过Arduino Mega 2560单片机的串口0可以监视SIM800C模块的工作情况，用于将信息打印输出，串口3和GSM-SIM800C模块串口通信。
+Basic working principle explanation and SIM800C module usage guide:
+【Interface Description】: 
+               The connection between Arduino Mega 2560 and GSM-SIM800C adopts UART serial port communication, and the communication connection with serial port 3 of microcontroller is as follows:
+Arduino Mega 2560 MCU SIM800C
+RX3 TXD
+TX3 RXD
+               Through the serial port 0 of the Arduino Mega 2560 microcontroller, you can monitor the working status of the SIM800C module, which is used to print out information, and the serial port 3 communicates with the GSM-SIM800C module serial port.
                
-（1）DHT11温湿度传感器模块：D2  	
+(1) DHT11 temperature and humidity sensor module: D2
      
-     	   　　 
-【功能说明】：arduino和sim800C的GPRS模块进行HTTP通信，发送数据到云端
+     ​
+[Function description]: arduino communicates with the GPRS module of sim800C through HTTP and sends data to the cloud
  
 
-1.硬件实物测试使用说明：
+1. Instructions for use of hardware physical test:
 
-◆第一步：了解熟悉整个系统的使用流程，上电进行实物的测试操作。
+◆The first step: Understand and be familiar with the use process of the entire system, and power on the test operation of the physical object.
 
-◆第二步：
- 【1】自己准备一张SIM手机卡插入模块，注意卡的缺口方向，手机卡要求是中国移动或者联通2G、3G、4G卡，不支持中国电信卡。
- 【2】利用DC 5V开关电源适配器或者5V移动电源给系统供电。上电之后SIM800C模块上面的NET红色网络指示灯以1秒的频率快速闪烁，
-      此时需要等待3~5s，GSM模块自动搜索网络信号，当3S闪烁一次表明此时GSM网络通信正常，如果出现1S频繁间断闪烁，此时表明
-      通信失败，此时检查插入的手机卡方向以及GSM天线和电源供电的稳定性。    
+◆The second step:
+ [1] Prepare a SIM mobile phone card to insert into the module, pay attention to the direction of the notch of the card, the mobile phone card requires China Mobile or China Unicom 2G, 3G, 4G card, China Telecom card is not supported.
+ 【2】Use DC 5V switching power adapter or 5V mobile power supply to supply power to the system. After power-on, the NET red network indicator on the SIM800C module flashes rapidly at a frequency of 1 second.
+      At this time, you need to wait for 3~5s, and the GSM module automatically searches for network signals. When the 3S flashes once, it indicates that the GSM network communication is normal at this time. If the 1S flashes frequently and intermittently, it indicates that
+      If the communication fails, check the direction of the inserted mobile phone card and the stability of the GSM antenna and power supply.
       
-◆第三步：安装OneNET安卓版本APP软件，直接安装到安卓手机，即可使用！
+◆The third step: Install the OneNET Android version APP software, install it directly on the Android phone, and you can use it!
 
-◆第四步：打开OneNET的手机APP软件，或者电脑PC网页端，或者微信公众平台，登陆我们提供的测试账号，用户名：****** 密码：****** ，必须填写一致，否则无法使用。 
+◆Step 4: Open OneNET's mobile APP software, or computer PC web page,
 
-2.软件程序修改与下载烧录使用说明：
+2. Instructions for software program modification and downloading and burning:
 
-（1）把资料中提供的所有库文件文件夹复制到arduino开发环境的libraries文件夹下。
+(1) Copy all the library file folders provided in the data to the libraries folder of the arduino development environment.
 
-    ①.使用DHT11温湿度传感器的库<dht11.h>，读取温湿度值。
-    ②.使用定时器<TimerOne.h>库，监控AT指令发送和获取返回数据的时间。
+    ①. Use the library <dht11.h> of the DHT11 temperature and humidity sensor to read the temperature and humidity values.
+    ②. Use the timer <TimerOne.h> library to monitor the time of AT command sending and getting the returned data.
 
-（2）在使用OneNet云平台时，对应自己注册的账户，需要修改相关的程序，修改部分如下：
+(2) When using the OneNet cloud platform, the relevant programs need to be modified corresponding to the account registered by oneself. The modified part is as follows:
           
-          char device_id[] = "********";        //修改为自己的设备ID
-          char API_KEY[] = "********";	        //修改为自己的API_KEY
+          char device_id[] = "********"; //Modify to your own device ID
+          char API_KEY[] = "********"; //Modify to your own API_KEY
 
-（3）修改完成程序之后，插上Mega2560的电路板，选择正确的板卡型号Arduino Mega 2560，最后把代码下载进即可，重新上电观看自己的账户传感器的效果。
+(3) After modifying the program, plug in the Mega2560 circuit board, select the correct board model Arduino Mega 2560, and finally download the code into it, then power on again to see the effect of your account sensor.
